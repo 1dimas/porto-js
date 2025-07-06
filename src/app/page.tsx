@@ -4,11 +4,24 @@ import RotatingText from "@/components/RotatingText/RotatingText";
 import SplitText from "@/components/SplitText/SplitText";
 import BlurText from "@/components/BlurText/BlurText";
 import AnimatedContent from "@/components/AnimatedContent/AnimatedContent";
+import Squares from "@/components/Squares/Squares";
+import CircularText from "@/components/CircularText/CircularText";
+import GradientText from "@/components/GradientText/GradientText";
+import ClickSpark from "@/components/ClickSpark/ClickSpark";
 
 export default function Home() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#0A1021]">
       <div className="container  mx-auto h-screen">
+        <div className="absolute  top-0  right-0 left-0 bottom-0 w-full h-full">
+          <Squares
+            speed={0.5}
+            squareSize={30}
+            direction="diagonal"
+            borderColor="#8f8f8f"
+            hoverFillColor="#C3FF00"
+          />
+        </div>
         <div className="grid grid-cols-12">
           <div className="col-span-6 ">
             <div className="flex items-center h-full">
@@ -24,8 +37,8 @@ export default function Home() {
                   scale={1.1}
                   threshold={0.2}
                 >
-                  <div className="flex items-center gap-2">
-                    <h1 className="text-2x1 tex-white font-bold ">
+                  <div className="flex items-center gap-3 relative">
+                    <h1 className="text-3x1 tex-white font-bold ">
                       I am Ready For Job
                     </h1>
                     <RotatingText
@@ -52,9 +65,8 @@ export default function Home() {
                     />
                   </div>
                 </AnimatedContent>
-                <div></div>
 
-                <div className="flex flex-col items-start">
+                <div className="flex flex-col items-start relative">
                   <SplitText
                     text="Hello, I am Dimas Dwi A.P"
                     className="text-6xl font-semibold text-start "
@@ -69,7 +81,7 @@ export default function Home() {
                     textAlign="center"
                   />
 
-                  <div className="flex flex-col items-start">
+                  <div className="flex flex-col items-start relative">
                     <SplitText
                       text="Full Stack Developer"
                       className="text-6xl font-semibold text-start text-[#C3FF00]"
@@ -87,17 +99,35 @@ export default function Home() {
                 </div>
 
                 <BlurText
-                  text="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                  delay={150}
+                  text="Saya adalah seorang Frontend Developer yang bersekolah di SMK TARUNA BAKTI yang memiliki ketertarikan besar dalam dunia pengembangan web modern. Saya memiliki pemahaman yang kuat dalam membangun antarmuka pengguna yang menarik, responsif, dan fungsional menggunakan React, Next.js, serta teknologi visual seperti React Three Fiber untuk menciptakan pengalaman interaktif berbasis 3D di web."
+                  delay={75}
                   animateBy="words"
                   direction="top"
                   className="text-xl mb-8"
                 />
+
+                <ClickSpark
+                  sparkColor="#C3FF00"
+                  sparkSize={10}
+                  sparkRadius={20}
+                  sparkCount={10}
+                  duration={400}
+                >
+                  <button className="group w-fit px-6 py-3 bg-[#C3FF00] border border-[#2f3b59] rounded-lg shadow-sm hover:shadow-md transition-all duration-200 relative ">
+                    <GradientText >HIRE ME</GradientText>
+                  </button>
+                </ClickSpark>
               </div>
             </div>
           </div>
-          <div className="col-span-6">
-            <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
+          <div className="col-span-6 relative h-full flex items-start justify-end">
+            <Lanyard position={[0, 0, 12]} gravity={[0, -40, 0]} />
+            <CircularText
+              text="REACT*BITS*COMPONENTS*"
+              onHover="speedUp"
+              spinDuration={20}
+              className="absolute top-30 right-30"
+            />
           </div>
         </div>
       </div>
