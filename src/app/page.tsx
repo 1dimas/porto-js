@@ -7,13 +7,15 @@ import AnimatedContent from "@/components/AnimatedContent/AnimatedContent";
 import Squares from "@/components/Squares/Squares";
 import CircularText from "@/components/CircularText/CircularText";
 import GradientText from "@/components/GradientText/GradientText";
-import ClickSpark from "@/components/ClickSpark/ClickSpark";
-
+import ScrollVelocity from "@/components/ScrollVelocity/ScrollVelocity";
+import Threads from "@/components/Threads/Threads";
 export default function Home() {
   return (
+    // Main container for the entire page
     <div className="min-h-screen overflow-x-hidden bg-[#0A1021]">
-      <div className="container  mx-auto h-screen">
-        <div className="absolute  top-0  right-0 left-0 bottom-0 w-full h-full">
+      <section className="relative h-screen overflow-hidden">
+        {/* Background Animation: Contained within the hero section */}
+        <div className="absolute top-0 right-0 left-0 bottom-0 w-full h-full">
           <Squares
             speed={0.5}
             squareSize={30}
@@ -22,9 +24,12 @@ export default function Home() {
             hoverFillColor="#C3FF00"
           />
         </div>
-        <div className="grid grid-cols-12">
-          <div className="col-span-6 ">
-            <div className="flex items-center h-full">
+
+        {/* Hero Content: Positioned relative to ensure it's on top of the background */}
+        <div className="container mx-auto h-full relative z-10">
+          <div className="grid grid-cols-12 h-full">
+            {/* Left Column */}
+            <div className="col-span-12 md:col-span-6 flex items-center">
               <div className="flex flex-col gap-6">
                 <AnimatedContent
                   distance={150}
@@ -38,7 +43,8 @@ export default function Home() {
                   threshold={0.2}
                 >
                   <div className="flex items-center gap-3 relative">
-                    <h1 className="text-3x1 tex-white font-bold ">
+                    {/* Corrected typo: tex-white -> text-white, text-3x1 -> text-3xl */}
+                    <h1 className="text-3xl text-white font-bold">
                       I am Ready For Job
                     </h1>
                     <RotatingText
@@ -48,8 +54,8 @@ export default function Home() {
                         "Web Programing",
                         "AI Developer",
                       ]}
-                      mainClassName="px-2 sm:px-2 md:px-3 bg-[#C3FF00] text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg
-              justify-center rounded-lg text-2x1 font-bold inline-flex transition-all"
+                      // Corrected typo: text-2x1 -> text-2xl. Removed duplicate justify-center.
+                      mainClassName="px-2 sm:px-2 md:px-3 bg-[#C3FF00] text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg text-2xl font-bold inline-flex transition-all"
                       staggerFrom={"last"}
                       initial={{ y: "100%" }}
                       animate={{ y: 0 }}
@@ -69,7 +75,7 @@ export default function Home() {
                 <div className="flex flex-col items-start relative">
                   <SplitText
                     text="Hello, I am Dimas Dwi A.P"
-                    className="text-6xl font-semibold text-start "
+                    className="text-6xl font-semibold text-start text-white"
                     delay={50}
                     duration={0.6}
                     ease="power3.out"
@@ -80,22 +86,19 @@ export default function Home() {
                     rootMargin="-100px"
                     textAlign="center"
                   />
-
-                  <div className="flex flex-col items-start relative">
-                    <SplitText
-                      text="Full Stack Developer"
-                      className="text-6xl font-semibold text-start text-[#C3FF00]"
-                      delay={75}
-                      duration={0.6}
-                      ease="power3.out"
-                      splitType="chars"
-                      from={{ opacity: 0, y: 40 }}
-                      to={{ opacity: 1, y: 0 }}
-                      threshold={0.1}
-                      rootMargin="-100px"
-                      textAlign="center"
-                    />
-                  </div>
+                  <SplitText
+                    text="Full Stack Developer"
+                    className="text-6xl font-semibold text-start text-[#C3FF00]"
+                    delay={75}
+                    duration={0.6}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                    textAlign="center"
+                  />
                 </div>
 
                 <BlurText
@@ -103,34 +106,39 @@ export default function Home() {
                   delay={75}
                   animateBy="words"
                   direction="top"
-                  className="text-xl mb-8"
+                  className="text-xl mb-8 text-white" // Added text-white for visibility
                 />
-
-                <ClickSpark
-                  sparkColor="#C3FF00"
-                  sparkSize={10}
-                  sparkRadius={20}
-                  sparkCount={10}
-                  duration={400}
-                >
-                  <button className="group w-fit px-6 py-3 bg-[#C3FF00] border border-[#2f3b59] rounded-lg shadow-sm hover:shadow-md transition-all duration-200 relative ">
-                    <GradientText >HIRE ME</GradientText>
-                  </button>
-                </ClickSpark>
+                <button className="group w-fit px-6 py-3 bg-black border border-[#2f3b59] rounded-lg shadow-sm hover:shadow-md transition-all duration-200 relative">
+                  <GradientText>HIRE ME</GradientText>
+                </button>
               </div>
             </div>
-          </div>
-          <div className="col-span-6 relative h-full flex items-start justify-end">
-            <Lanyard position={[0, 0, 12]} gravity={[0, -40, 0]} />
-            <CircularText
-              text="REACT*BITS*COMPONENTS*"
-              onHover="speedUp"
-              spinDuration={20}
-              className="absolute top-30 right-30"
-            />
+
+            {/* Right Column */}
+            <div className="col-span-6 relative h-full hidden md:flex items-start justify-end">
+              <Lanyard position={[0, 0, 12]} gravity={[0, -40, 0]} />
+              <CircularText
+                text="Front-end*BITS*Developer*"
+                onHover="speedUp"
+                spinDuration={20}
+                className="absolute top-30 right-30"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section>
+        <div className="container mx-auto px-0 py-0 ">
+          <ScrollVelocity
+            texts={["Taruna Bakti", "Front-end Developer"]}
+            className="custom-scroll-text"
+          />
+        </div>
+        <div style={{ width: "100%", height: "660px", position: "relative" }}>
+          <Threads amplitude={1} distance={0} enableMouseInteraction={true} />
+        </div>
+      </section>
     </div>
   );
 }
