@@ -11,13 +11,15 @@ import ScrollVelocity from "@/components/ScrollVelocity/ScrollVelocity";
 import Threads from "@/components/Threads/Threads";
 import ProfileCard from "@/components/ProfileCard/ProfileCard";
 import { useFormspree } from "@formspree/react";
+import { MeshLineGeometry, MeshLineMaterial } from "meshline";
+
 export default function Home() {
   return (
     // Main container for the entire page
     <div className="min-h-screen overflow-x-hidden bg-[#0A1021]">
-      <section className="relative h-screen overflow-hidden">
-        {/* Background Animation: Contained within the hero section */}
-        <div className="absolute top-0 right-0 left-0 bottom-0 w-full h-full">
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Background Animation */}
+        <div className="absolute inset-0 w-full h-full">
           <Squares
             speed={0.5}
             squareSize={30}
@@ -27,103 +29,102 @@ export default function Home() {
           />
         </div>
 
-        {/* Hero Content: Positioned relative to ensure it's on top of the background */}
-        <div className="container mx-auto h-full relative z-10">
-          <div className="grid grid-cols-12 h-full">
+        {/* Hero Content */}
+        <div className="relative z-10 container mx-auto px-4 md:px-8 h-full">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center min-h-screen">
             {/* Left Column */}
-            <div className="col-span-12 md:col-span-6 flex items-center">
-              <div className="flex flex-col gap-6">
-                <AnimatedContent
-                  distance={150}
-                  direction="horizontal"
-                  reverse={false}
-                  duration={1.2}
-                  ease="bounce.out"
-                  initialOpacity={0.2}
-                  animateOpacity
-                  scale={1.1}
-                  threshold={0.2}
-                >
-                  <div className="flex items-center gap-3 relative">
-                    {/* Corrected typo: tex-white -> text-white, text-3x1 -> text-3xl */}
-                    <h1 className="text-3xl text-white font-bold">
-                      I am Ready For Job
-                    </h1>
-                    <RotatingText
-                      texts={[
-                        "Web Design",
-                        "Web Development",
-                        "Web Programing",
-                        "AI Developer",
-                      ]}
-                      // Corrected typo: text-2x1 -> text-2xl. Removed duplicate justify-center.
-                      mainClassName="px-2 sm:px-2 md:px-3 bg-[#C3FF00] text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg text-2xl font-bold inline-flex transition-all"
-                      staggerFrom={"last"}
-                      initial={{ y: "100%" }}
-                      animate={{ y: 0 }}
-                      exit={{ y: "-120%" }}
-                      staggerDuration={0.025}
-                      splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                      transition={{
-                        type: "spring",
-                        damping: 30,
-                        stiffness: 400,
-                      }}
-                      rotationInterval={2000}
-                    />
-                  </div>
-                </AnimatedContent>
-
-                <div className="flex flex-col items-start relative">
-                  <SplitText
-                    text="Hello, I am Dimas Dwi A.P"
-                    className="text-6xl font-semibold text-start text-white"
-                    delay={50}
-                    duration={0.6}
-                    ease="power3.out"
-                    splitType="chars"
-                    from={{ opacity: 0, y: 40 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="center"
-                  />
-                  <SplitText
-                    text="Full Stack Developer"
-                    className="text-6xl font-semibold text-start text-[#C3FF00]"
-                    delay={75}
-                    duration={0.6}
-                    ease="power3.out"
-                    splitType="chars"
-                    from={{ opacity: 0, y: 40 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="center"
+            <div className="md:col-span-6 flex flex-col gap-6">
+              <AnimatedContent
+                distance={150}
+                direction="horizontal"
+                reverse={false}
+                duration={1.2}
+                ease="bounce.out"
+                initialOpacity={0.2}
+                animateOpacity
+                scale={1.1}
+                threshold={0.2}
+              >
+                <div className="flex flex-wrap items-center gap-3">
+                  <h1 className="text-2xl sm:text-3xl text-white font-bold">
+                    I am Ready For Job
+                  </h1>
+                  <RotatingText
+                    texts={[
+                      "Web Design",
+                      "Web Development",
+                      "Web Programming",
+                      "AI Developer",
+                    ]}
+                    mainClassName="px-3 bg-[#C3FF00] text-black rounded-lg text-lg sm:text-xl md:text-2xl font-bold inline-flex transition-all"
+                    staggerFrom="last"
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-120%" }}
+                    staggerDuration={0.025}
+                    splitLevelClassName="overflow-hidden"
+                    transition={{
+                      type: "spring",
+                      damping: 30,
+                      stiffness: 400,
+                    }}
+                    rotationInterval={2000}
                   />
                 </div>
+              </AnimatedContent>
 
-                <BlurText
-                  text="Saya adalah seorang Frontend Developer yang bersekolah di SMK TARUNA BAKTI yang memiliki ketertarikan besar dalam dunia pengembangan web modern. Saya memiliki pemahaman yang kuat dalam membangun antarmuka pengguna yang menarik, responsif, dan fungsional menggunakan React, Next.js, serta teknologi visual seperti React Three Fiber untuk menciptakan pengalaman interaktif berbasis 3D di web."
-                  delay={75}
-                  animateBy="words"
-                  direction="top"
-                  className="text-xl mb-8 text-white" // Added text-white for visibility
+              {/* Title */}
+              <div className="flex flex-col ">
+                <SplitText
+                  text="Hello, I am Dimas Dwi"
+                  className="text-4xl sm:text-5xl md:text-6xl font-semibold text-white"
+                  delay={50}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                  textAlign="start"
                 />
-                <button className="group w-fit px-6 py-3 bg-black border border-[#2f3b59] rounded-lg shadow-sm hover:shadow-md transition-all duration-200 relative">
-                  <GradientText>HIRE ME</GradientText>
-                </button>
+                <SplitText
+                  text="Front-End Developer"
+                  className="text-4xl sm:text-5xl md:text-6xl font-semibold text-[#C3FF00]"
+                  delay={75}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                  textAlign="start"
+                />
               </div>
+
+              {/* Description */}
+              <BlurText
+                text="Saya adalah seorang Frontend Developer yang bersekolah di SMK TARUNA BAKTI yang memiliki ketertarikan besar dalam dunia pengembangan web modern. Saya memiliki pemahaman yang kuat dalam membangun antarmuka pengguna yang menarik, responsif, dan fungsional menggunakan React, Next.js, serta teknologi visual seperti React Three Fiber untuk menciptakan pengalaman interaktif berbasis 3D di web."
+                delay={75}
+                animateBy="words"
+                direction="top"
+                className="text-base sm:text-lg md:text-xl text-white max-w-prose"
+              />
+
+              <button className="group w-fit px-6 py-3 bg-black border border-[#2f3b59] rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
+                <GradientText>HIRE ME</GradientText>
+              </button>
             </div>
 
             {/* Right Column */}
-            <div className="col-span-6 relative h-full hidden md:flex items-start justify-end">
+            <div className="hidden md:col-span-6 md:flex h-full items-start justify-end relative">
               <Lanyard position={[0, 0, 12]} gravity={[0, -40, 0]} />
               <CircularText
                 text="Front-end*BITS*Developer*"
                 onHover="speedUp"
                 spinDuration={20}
-                className="absolute top-30 right-30"
+                className="absolute top-10 right-10"
               />
             </div>
           </div>
@@ -207,10 +208,10 @@ export default function Home() {
 
       <section className="py-24 bg-[#10172b]">
         <section className="py-24 bg-[#10172b]">
-          <div className="container mx-auto">
+          <div className="container mx-auto top-0 right-0 left-0 bottom-0 w-full h-full">
             <SplitText
               text="Keahlian"
-              className="text-4xl font-bold text-[#C3FF00] mb-10 text-center mx-auto w-1/3 pl-32"
+              className="text-4xl font-bold text-[#C3FF00] mb-10 text-center mx-auto w-1/3 pl-100"
               delay={30}
               duration={0.5}
               splitType="words"
@@ -620,7 +621,7 @@ export default function Home() {
           />
 
           <form
-            action="https://formspree.io/f/your_form_id" // ← Ganti dengan URL kamu
+            action="https://formspree.io/f/mgvzodrp" // ← Ganti dengan URL kamu
             method="POST"
             className="bg-[#181e2e] rounded-xl p-8 border border-[#2f3b59] shadow-lg flex flex-col gap-6"
           >
@@ -663,10 +664,10 @@ export default function Home() {
             <div className="text-center text-white/70 mt-2">
               Email:{" "}
               <a
-                href="mailto:dimas@email.com"
+                href="dimasdwianandaputra@email.com"
                 className="text-[#C3FF00] underline"
               >
-                dimas@email.com
+                dimasdwianandaputra@email.com
               </a>
             </div>
           </form>
@@ -681,7 +682,7 @@ export default function Home() {
           </div>
           <div className="flex gap-5 justify-center">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/1dimas"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#C3FF00] hover:text-white transition text-2xl"
@@ -697,7 +698,7 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/dimas-dwi-4224a9298?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#C3FF00] hover:text-white transition text-2xl"
@@ -713,7 +714,7 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="https://instagram.com/yourusername"
+              href="https://www.instagram.com/dimsqw1?igsh=aHNoYXZhbDlkdmx5"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#C3FF00] hover:text-white transition text-2xl"
