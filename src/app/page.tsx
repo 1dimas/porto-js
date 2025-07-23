@@ -10,6 +10,7 @@ import GradientText from "@/components/GradientText/GradientText";
 import ScrollVelocity from "@/components/ScrollVelocity/ScrollVelocity";
 import Threads from "@/components/Threads/Threads";
 import ProfileCard from "@/components/ProfileCard/ProfileCard";
+import { useFormspree } from "@formspree/react";
 export default function Home() {
   return (
     // Main container for the entire page
@@ -187,7 +188,6 @@ export default function Home() {
             reverse
             duration={1}
             threshold={0.2}
-            
           >
             <div className="flex justify-center ">
               <ProfileCard
@@ -210,7 +210,7 @@ export default function Home() {
           <div className="container mx-auto">
             <SplitText
               text="Keahlian"
-              className="text-4xl font-bold text-[#C3FF00] mb-10 text-center"
+              className="text-4xl font-bold text-[#C3FF00] mb-10 text-center mx-auto w-1/3 pl-32"
               delay={30}
               duration={0.5}
               splitType="words"
@@ -218,197 +218,251 @@ export default function Home() {
               to={{ opacity: 1, y: 0 }}
             />
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
-              {[
-                {
-                  name: "React",
-                  color: "#61dafb",
-                  progress: "90%",
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <circle cx="20" cy="20" r="20" fill="#181e2e" />
-                      <g>
-                        <ellipse
-                          rx="8"
-                          ry="20"
-                          transform="matrix(.87 .5 -.5 .87 20 20)"
-                          stroke="#61dafb"
-                          strokeWidth="2"
+            <div className="w-5/6 mx-auto">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-x-20 md:gap-x-4 md:p-x-10 w-5/6 mx-auto ">
+                {[
+                  {
+                    name: "React",
+                    // desk: "Library JS",
+                    desk: "Library JS",
+                    color: "#61dafb",
+                    progress: "90%",
+                    icon: (
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <circle cx="20" cy="20" r="20" fill="#181e2e" />
+                        <g>
+                          <ellipse
+                            rx="8"
+                            ry="20"
+                            transform="matrix(.87 .5 -.5 .87 20 20)"
+                            stroke="#61dafb"
+                            strokeWidth="2"
+                          />
+                          <ellipse
+                            rx="8"
+                            ry="20"
+                            transform="matrix(.87 -.5 .5 .87 20 20)"
+                            stroke="#61dafb"
+                            strokeWidth="2"
+                          />
+                          <ellipse
+                            rx="8"
+                            ry="20"
+                            transform="matrix(0 1 1 0 20 20)"
+                            stroke="#61dafb"
+                            strokeWidth="2"
+                          />
+                          <circle cx="20" cy="20" r="3" fill="#61dafb" />
+                        </g>
+                      </svg>
+                    ),
+                  },
+                  {
+                    name: "Next.js",
+                    desk: "Library JS",
+                    color: "#ffffff",
+                    progress: "85%",
+                    icon: (
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <circle cx="20" cy="20" r="20" fill="#181e2e" />
+                        <text
+                          x="10"
+                          y="28"
+                          fontSize="18"
+                          fill="#ffffff"
+                          fontFamily="Arial"
+                        >
+                          N
+                        </text>
+                      </svg>
+                    ),
+                  },
+                  {
+                    name: "TailwindCSS",
+                    desk: "Library JS",
+                    color: "#38bdf8",
+                    progress: "80%",
+                    icon: (
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <circle cx="20" cy="20" r="20" fill="#181e2e" />
+                        <path
+                          d="M13 23c1.5-3 3.5-4.5 6-4.5s4.5 1.5 6 4.5c-1.5 3-3.5 4.5-6 4.5s-4.5-1.5-6-4.5z"
+                          fill="#38bdf8"
                         />
-                        <ellipse
-                          rx="8"
-                          ry="20"
-                          transform="matrix(.87 -.5 .5 .87 20 20)"
-                          stroke="#61dafb"
-                          strokeWidth="2"
+                        <path
+                          d="M19 17c1-2 2.5-3 4-3s3 1 4 3c-1 2-2.5 3-4 3s-3-1-4-3z"
+                          fill="#38bdf8"
                         />
-                        <ellipse
-                          rx="8"
-                          ry="20"
-                          transform="matrix(0 1 1 0 20 20)"
-                          stroke="#61dafb"
-                          strokeWidth="2"
+                      </svg>
+                    ),
+                  },
+                  {
+                    name: "Three.js",
+                    desk: "Library JS",
+                    color: "#ffffff",
+                    progress: "70%",
+                    icon: (
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <circle cx="20" cy="20" r="20" fill="#181e2e" />
+                        <polygon points="20,10 30,30 10,30" fill="#ffffff" />
+                        <polygon points="20,14 27,28 13,28" fill="#000000" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    name: "HTML",
+                    desk: "Library JS",
+                    color: "#e34c26",
+                    progress: "95%",
+                    icon: (
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <circle cx="20" cy="20" r="20" fill="#181e2e" />
+                        <text
+                          x="8"
+                          y="28"
+                          fontSize="18"
+                          fill="#e34c26"
+                          fontFamily="Arial"
+                        >
+                          HTML
+                        </text>
+                      </svg>
+                    ),
+                  },
+                  {
+                    name: "JavaScript",
+                    desk: "Library JS",
+                    color: "#f7df1e",
+                    progress: "90%",
+                    icon: (
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <circle cx="20" cy="20" r="20" fill="#181e2e" />
+                        <text
+                          x="2"
+                          y="28"
+                          fontSize="16"
+                          fill="#f7df1e"
+                          fontFamily="Arial"
+                        >
+                          JS
+                        </text>
+                      </svg>
+                    ),
+                  },
+                  {
+                    name: "Java",
+                    desk: "Library JS",
+                    color: "#f89820",
+                    progress: "75%",
+                    icon: (
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <circle cx="20" cy="20" r="20" fill="#181e2e" />
+                        <text
+                          x="7"
+                          y="28"
+                          fontSize="18"
+                          fill="#f89820"
+                          fontFamily="Arial"
+                        >
+                          Java
+                        </text>
+                      </svg>
+                    ),
+                  },
+                  {
+                    name: "PHP / Laravel",
+                    desk: "Library JS",
+                    color: "#ff2d20",
+                    progress: "80%",
+                    icon: (
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <circle cx="20" cy="20" r="20" fill="#181e2e" />
+                        <text
+                          x="2"
+                          y="28"
+                          fontSize="14"
+                          fill="#ff2d20"
+                          fontFamily="Arial"
+                        >
+                          Laravel
+                        </text>
+                      </svg>
+                    ),
+                  },
+                ].map((skill, index) => (
+                  <AnimatedContent
+                    key={skill.name}
+                    distance={60}
+                    direction="vertical"
+                    duration={0.7 + index * 0.1}
+                    threshold={0.1}
+                  >
+                    <div className="md:w-[250px] sm:w-[120px] w-[100px] group flex flex-col items-center bg-[#181e2e] rounded-xl p-6 border border-[#2f3b59] hover:scale-105 transition-transform shadow-md hover:shadow-[#C3FF00]/30">
+                      <span
+                        className="text-5xl mb-2"
+                        style={{ color: skill.color }}
+                      >
+                        {skill.icon}
+                      </span>
+                      <span className="text-white font-semibold text-lg">
+                        {skill.name}
+                      </span>
+                      <span className="text-white font-semibold sm:text-sm text-[10px] opacity-75">
+                        {skill.desk}
+                      </span>
+                      <div className="w-full h-2 bg-[#2f3b59] rounded mt-3">
+                        <div
+                          className="h-2 rounded"
+                          style={{
+                            width: skill.progress,
+                            backgroundColor: skill.color,
+                          }}
                         />
-                        <circle cx="20" cy="20" r="3" fill="#61dafb" />
-                      </g>
-                    </svg>
-                  ),
-                },
-                {
-                  name: "Next.js",
-                  color: "#ffffff",
-                  progress: "85%",
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <circle cx="20" cy="20" r="20" fill="#181e2e" />
-                      <text
-                        x="10"
-                        y="28"
-                        fontSize="18"
-                        fill="#ffffff"
-                        fontFamily="Arial"
-                      >
-                        N
-                      </text>
-                    </svg>
-                  ),
-                },
-                {
-                  name: "TailwindCSS",
-                  color: "#38bdf8",
-                  progress: "80%",
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <circle cx="20" cy="20" r="20" fill="#181e2e" />
-                      <path
-                        d="M13 23c1.5-3 3.5-4.5 6-4.5s4.5 1.5 6 4.5c-1.5 3-3.5 4.5-6 4.5s-4.5-1.5-6-4.5z"
-                        fill="#38bdf8"
-                      />
-                      <path
-                        d="M19 17c1-2 2.5-3 4-3s3 1 4 3c-1 2-2.5 3-4 3s-3-1-4-3z"
-                        fill="#38bdf8"
-                      />
-                    </svg>
-                  ),
-                },
-                {
-                  name: "Three.js",
-                  color: "#ffffff",
-                  progress: "70%",
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <circle cx="20" cy="20" r="20" fill="#181e2e" />
-                      <polygon points="20,10 30,30 10,30" fill="#ffffff" />
-                      <polygon points="20,14 27,28 13,28" fill="#000000" />
-                    </svg>
-                  ),
-                },
-                {
-                  name: "HTML",
-                  color: "#e34c26",
-                  progress: "95%",
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <circle cx="20" cy="20" r="20" fill="#181e2e" />
-                      <text
-                        x="8"
-                        y="28"
-                        fontSize="18"
-                        fill="#e34c26"
-                        fontFamily="Arial"
-                      >
-                        HTML
-                      </text>
-                    </svg>
-                  ),
-                },
-                {
-                  name: "JavaScript",
-                  color: "#f7df1e",
-                  progress: "90%",
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <circle cx="20" cy="20" r="20" fill="#181e2e" />
-                      <text
-                        x="2"
-                        y="28"
-                        fontSize="16"
-                        fill="#f7df1e"
-                        fontFamily="Arial"
-                      >
-                        JS
-                      </text>
-                    </svg>
-                  ),
-                },
-                {
-                  name: "Java",
-                  color: "#f89820",
-                  progress: "75%",
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <circle cx="20" cy="20" r="20" fill="#181e2e" />
-                      <text
-                        x="7"
-                        y="28"
-                        fontSize="18"
-                        fill="#f89820"
-                        fontFamily="Arial"
-                      >
-                        Java
-                      </text>
-                    </svg>
-                  ),
-                },
-                {
-                  name: "PHP / Laravel",
-                  color: "#ff2d20",
-                  progress: "80%",
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <circle cx="20" cy="20" r="20" fill="#181e2e" />
-                      <text
-                        x="2"
-                        y="28"
-                        fontSize="14"
-                        fill="#ff2d20"
-                        fontFamily="Arial"
-                      >
-                        Laravel
-                      </text>
-                    </svg>
-                  ),
-                },
-              ].map((skill, index) => (
-                <AnimatedContent
-                  key={skill.name}
-                  distance={60}
-                  direction="vertical"
-                  duration={0.7 + index * 0.1}
-                  threshold={0.1}
-                >
-                  <div className="group flex flex-col items-center bg-[#181e2e] rounded-xl p-6 border border-[#2f3b59] hover:scale-105 transition-transform shadow-md hover:shadow-[#C3FF00]/30">
-                    <span
-                      className="text-5xl mb-2"
-                      style={{ color: skill.color }}
-                    >
-                      {skill.icon}
-                    </span>
-                    <span className="text-white font-semibold text-lg">
-                      {skill.name}
-                    </span>
-                    <div className="w-full h-2 bg-[#2f3b59] rounded mt-3">
-                      <div
-                        className="h-2 rounded"
-                        style={{
-                          width: skill.progress,
-                          backgroundColor: skill.color,
-                        }}
-                      />
+                      </div>
                     </div>
-                  </div>
-                </AnimatedContent>
-              ))}
+                  </AnimatedContent>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -564,31 +618,48 @@ export default function Home() {
             from={{ opacity: 0, y: 30 }}
             to={{ opacity: 1, y: 0 }}
           />
-          <form className="bg-[#181e2e] rounded-xl p-8 border border-[#2f3b59] shadow-lg flex flex-col gap-6">
+
+          <form
+            action="https://formspree.io/f/your_form_id" // ← Ganti dengan URL kamu
+            method="POST"
+            className="bg-[#181e2e] rounded-xl p-8 border border-[#2f3b59] shadow-lg flex flex-col gap-6"
+          >
             <input
               type="text"
+              name="name"
               placeholder="Nama"
               className="bg-transparent border-2 border-[#C3FF00] focus:border-[#fff] rounded px-4 py-3 text-white outline-none transition placeholder:text-[#C3FF00]/60"
               required
             />
             <input
               type="email"
+              name="email"
               placeholder="Email"
               className="bg-transparent border-2 border-[#C3FF00] focus:border-[#fff] rounded px-4 py-3 text-white outline-none transition placeholder:text-[#C3FF00]/60"
               required
             />
             <textarea
+              name="message"
               placeholder="Pesan"
               rows={4}
               className="bg-transparent border-2 border-[#C3FF00] focus:border-[#fff] rounded px-4 py-3 text-white outline-none transition placeholder:text-[#C3FF00]/60 resize-none"
               required
             />
+
+            {/* Optional redirect */}
+            <input
+              type="hidden"
+              name="_redirect"
+              value="https://yourdomain.com/thanks.html"
+            />
+
             <button
               type="submit"
               className="bg-[#C3FF00] text-black font-bold py-3 rounded hover:bg-[#b3e600] transition"
             >
               Kirim Pesan
             </button>
+
             <div className="text-center text-white/70 mt-2">
               Email:{" "}
               <a
